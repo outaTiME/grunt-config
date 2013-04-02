@@ -1,0 +1,42 @@
+{
+  "name": "grunt-config",
+  "version": "0.1.0",
+  "description": "Define specific configuration per rule for future tasks.",
+  "homepage": "http://github.com/outaTiME/grunt-config",
+  "author": {
+    "name": "outaTiME",
+    "url": "http://outa.im/"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/outaTiME/grunt-config.git"
+  },
+  "bugs": {
+    "url": "http://github.com/outaTiME/grunt-config/issues"
+  },
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt-lib-contrib": "~0.5.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-nodeunit": "~0.1.2"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
