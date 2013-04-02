@@ -41,14 +41,18 @@ module.exports = function (grunt) {
     config: {
       dev: {
         options: {
-          'environment': 'development',
-          'environment_template': '<%= "development" %>'
+          variables: {
+            'environment': 'development',
+            'environment_template': '<%= "development" %>'
+          }
         }
       },
       prod: {
         options: {
-          'environment': 'production',
-          'environment_template': '<%= "production" %>'
+          variables: {
+            'environment': 'production',
+            'environment_template': '<%= "production" %>'
+          }
         }
       }
     },

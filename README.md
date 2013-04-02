@@ -1,6 +1,6 @@
 # grunt-config [![Build Status](https://secure.travis-ci.org/outaTiME/grunt-config.png?branch=master)](http://travis-ci.org/outaTiME/grunt-config)
 
-> Define specific configuration per rule for future tasks.
+> Define specific target task configuration.
 
 
 
@@ -34,20 +34,83 @@ Task targets, files and options may be specified according to the grunt [Configu
 config: {
   dev: {
     options: {
-      'environment': 'development'
+      variables: {
+        'environment': 'development'
+      }
     }
   },
   prod: {
     options: {
-      'environment': 'production'
+      variables: {
+        'environment': 'production'
+      }
     }
   }
 }
 ```
 
+##### Environment variable in source (in conjunction with [grunt-replace](http://github.com/outaTiME/grunt-replace))
+
+Define the place where variable will be injected:
+
+```
+// build/environment.txt
+
+@@environment
+```
+
+##### Gruntfile
+
+Define variable for each environment:
+
+```js
+config: {
+  dev: {
+    options: {
+      variables: {
+        'environment': 'development'
+      }
+    }
+  },
+  prod: {
+    options: {
+      variables: {
+        'environment': 'production'
+      }
+    }
+  }
+},
+replace: {
+  dist: {
+    options: {
+      variables: {
+        'environment': '<%= grunt.config.get("environment") %>'
+      },
+      force: true
+    },
+    files: [
+      {expand: true, flatten: true, src: ['build/environment.txt'], dest: 'public/'}
+    ]
+  }
+},
+```
+
+##### Tasks
+
+Generate task to specific config definition:
+
+```js
+// development
+grunt.registerTask('dev', ['config:dev', 'replace']);
+
+// production
+grunt.registerTask('prod', ['config:prod', 'replace']);
+```
+
 
 ## Release History
 
+ * 2013-04-02   v0.1.1   Update variable definition object.
  * 2013-04-02   v0.1.0   Initial version.
 
 ---

@@ -20,13 +20,20 @@ module.exports = function (grunt) {
 
   var path = require('path');
 
-  grunt.registerMultiTask('config', 'Define specific configuration per rule for future tasks.', function () {
-    var options = this.options();
+  grunt.registerMultiTask('config', 'Define specific target task configuration.', function () {
+
+    var
+      options = this.options({
+        variables: {}
+      }),
+      variables = options.variables;
+
     grunt.verbose.writeflags(options, 'Options');
-    Object.keys(options).forEach(function (option) {
-      var value = options[option];
-      grunt.log.writeln('Config ' + option.cyan + ' -> ' + value.cyan);
-      grunt.config.set(option, value);
+
+    Object.keys(variables).forEach(function (variable) {
+      var value = variables[variable];
+      grunt.log.writeln('Config ' + variable.cyan + ' -> ' + value.cyan);
+      grunt.config.set(variable, value);
     });
   });
 
