@@ -1,6 +1,6 @@
 # grunt-config [![Build Status](https://secure.travis-ci.org/outaTiME/grunt-config.png?branch=master)](http://travis-ci.org/outaTiME/grunt-config)
 
-> Define specific target task configuration.
+> Define specific target configuration.
 
 
 
@@ -26,7 +26,21 @@ grunt.loadNpmTasks('grunt-config');
 ## Config task
 _Run this task with the `grunt config` command._
 
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+Task targets and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+### Options
+
+##### variables
+Type: `Object`
+
+This option is used to define the variables to be exported in [grunt.config](http://gruntjs.com/api/grunt.config) object.
+
+```javascript
+options: {
+  variables: {
+    'foo': 'bar'
+  }
+}
+```
 
 ### Usage Examples
 
@@ -61,7 +75,7 @@ Define the place where variable will be injected:
 
 ##### Gruntfile
 
-Define variable for each environment:
+Define variables for each environment:
 
 ```js
 config: {
@@ -97,7 +111,7 @@ replace: {
 
 ##### Tasks
 
-Generate task to specific config definition:
+Define tasks for each target:
 
 ```js
 // development
@@ -110,6 +124,7 @@ grunt.registerTask('prod', ['config:prod', 'replace']);
 
 ## Release History
 
+ * 2013-04-02   v0.1.2   Update description and README.md.
  * 2013-04-02   v0.1.1   Update variable definition object.
  * 2013-04-02   v0.1.0   Initial version.
 

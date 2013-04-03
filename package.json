@@ -1,7 +1,7 @@
 {
   "name": "grunt-config",
-  "version": "0.1.1",
-  "description": "Define specific target task configuration.",
+  "version": "0.1.2",
+  "description": "Define specific target configuration.",
   "homepage": "http://github.com/outaTiME/grunt-config",
   "author": {
     "name": "outaTiME",
