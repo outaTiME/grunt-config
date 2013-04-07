@@ -1,6 +1,6 @@
 {
   "name": "grunt-config",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Define specific target configuration.",
   "homepage": "http://github.com/outaTiME/grunt-config",
   "author": {

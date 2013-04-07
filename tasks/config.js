@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 
   'use strict';
 
-  var path = require('path');
+  var path = require('path'), util = require('util');
 
   grunt.registerMultiTask('config', 'Define specific target task configuration.', function () {
 
@@ -32,7 +32,7 @@ module.exports = function (grunt) {
 
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
-      grunt.log.writeln('Config ' + variable.cyan + ' -> ' + value.cyan);
+      grunt.log.writeln('Config ' + variable.cyan + ' -> ' + util.inspect(value).cyan);
       grunt.config.set(variable, value);
     });
   });

@@ -124,6 +124,7 @@ grunt.registerTask('prod', ['config:prod', 'replace']);
 
 ## Release History
 
+ * 2013-04-07   v0.1.4   Fix log for complex object with util.inspect.
  * 2013-04-02   v0.1.3   Add peerDependencies.
  * 2013-04-02   v0.1.2   Update description and README.md.
  * 2013-04-02   v0.1.1   Update variable definition object.
