@@ -63,7 +63,7 @@ config: {
 }
 ```
 
-##### Environment variable in source (in conjunction with [grunt-replace](http://github.com/outaTiME/grunt-replace))
+#### Environment variable in source (in conjunction with [grunt-replace](http://github.com/outaTiME/grunt-replace))
 
 Define the place where variable will be injected:
 
@@ -122,7 +122,7 @@ grunt.registerTask('dev', ['config:dev', 'replace']);
 grunt.registerTask('prod', ['config:prod', 'replace']);
 ```
 
-##### Handlebars environment partials (in conjunction with [assemble](https://github.com/assemble/assemble))
+#### Handlebars environment partials (in conjunction with [assemble](https://github.com/assemble/assemble))
 
 ##### Gruntfile
 
