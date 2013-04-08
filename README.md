@@ -94,6 +94,7 @@ config: {
     }
   }
 },
+
 replace: {
   dist: {
     options: {
@@ -106,7 +107,7 @@ replace: {
       {expand: true, flatten: true, src: ['build/environment.txt'], dest: 'public/'}
     ]
   }
-},
+}
 ```
 
 ##### Tasks
@@ -121,6 +122,54 @@ grunt.registerTask('dev', ['config:dev', 'replace']);
 grunt.registerTask('prod', ['config:prod', 'replace']);
 ```
 
+##### Handlebars environment partials (in conjunction with [assemble](https://github.com/assemble/assemble))
+
+##### Gruntfile
+
+Define partials for each environment (complex object like arrays are allowed):
+
+```js
+config: {
+  dev: {
+    options: {
+      variables: {
+        'partials': ['assets/partials/dev/*.hbs']
+      }
+    }
+  },
+  dist: {
+    options: {
+      variables: {
+        'partials': ['assets/partials/dist/*.hbs']
+      }
+    }
+  }
+},
+
+assemble: {
+  dist: {
+    options: {
+      partials: '<%= grunt.config.get("partials") %>',
+      ext: '.html'
+    },
+    files: [
+      {expand: true, cwd: 'assets/templates', src: ['**/*.hbs'], dest: 'tmp/templates'}
+    ]
+  }
+}
+```
+
+##### Tasks
+
+Define tasks for each target:
+
+```js
+// development
+grunt.registerTask('dev', ['config:dev', 'assemble']);
+
+// production
+grunt.registerTask('prod', ['config:prod', 'assemble']);
+```
 
 ## Release History
 
