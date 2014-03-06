@@ -173,7 +173,7 @@ grunt.registerTask('prod', ['config:prod', 'assemble']);
 
 ## Release History
 
- * 2013-04-07   v0.1.5   Update dependencies.
+ * 2014-03-06   v0.1.5   Update dependencies.
  * 2013-04-07   v0.1.4   Fix log for complex object with util.inspect.
  * 2013-04-02   v0.1.3   Add peerDependencies.
  * 2013-04-02   v0.1.2   Update description and README.md.
