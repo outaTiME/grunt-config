@@ -1,18 +1,12 @@
 {
   "name": "grunt-config",
-  "version": "0.1.4",
   "description": "Define specific target configuration.",
+  "version": "0.1.5",
   "homepage": "http://github.com/outaTiME/grunt-config",
   "author": {
     "name": "outaTiME",
     "url": "http://outa.im/"
   },
-  "licenses": [
-    {
-      "type": "Apache-2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0"
-    }
-  ],
   "repository": {
     "type": "git",
     "url": "http://github.com/outaTiME/grunt-config.git"
@@ -20,7 +14,12 @@
   "bugs": {
     "url": "http://github.com/outaTiME/grunt-config/issues"
   },
-  "main": "Gruntfile.js",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/outaTiME/grunt-config/blob/master/LICENSE-MIT"
+    }
+  ],
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -28,18 +27,25 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt-lib-contrib": "~0.5.1"
+    "chalk": "~0.4.0"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-jshint": "~0.2.0",
-    "grunt-contrib-nodeunit": "~0.1.2"
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-nodeunit": "~0.3.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "target",
+    "config" ,
+    "environment"
+  ],
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
   ]
 }

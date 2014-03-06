@@ -1,11 +1,16 @@
+
 var grunt = require('grunt');
 
 exports['config'] = {
+
   main: function(test) {
 
     'use strict';
 
-    var expect, result, bool_result, re;
+    var expect;
+    var result;
+    var bool_result;
+    var re;
 
     test.expect(2);
 
@@ -18,5 +23,7 @@ exports['config'] = {
     test.equal(expect, result, 'should environment template development in config');
 
     test.done();
+
   }
+
 };
