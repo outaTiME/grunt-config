@@ -37,7 +37,11 @@ module.exports = function (grunt) {
         options: {
           variables: {
             'environment': 'development',
-            'environment_template': '<%= "development" %>'
+            'environment_template': '<%= "development" %>',
+            'concatOptions': {
+              banner: '(function dev () {',
+              footer: '}());'
+            }
           }
         }
       },
@@ -45,9 +49,28 @@ module.exports = function (grunt) {
         options: {
           variables: {
             'environment': 'production',
-            'environment_template': '<%= "production" %>'
+            'environment_template': '<%= "production" %>',
+            'concatOptions': {
+              banner: '(function prod () {',
+              footer: '}());'
+            }
           }
         }
+      }
+    },
+
+    concat: {
+      dist: {
+        options: {
+          process: function (src, filepath) {
+            var concatOptions = grunt.config.get('concatOptions');
+            return concatOptions.banner + '\n' + src +
+              concatOptions.footer + '\n';
+          }
+        },
+        files: [
+          {expand: true, flatten: true, src: ['test/fixtures/concat.txt'], dest: 'tmp/'}
+        ]
       }
     },
 
@@ -70,10 +93,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Whenever the 'test' task is run, first clean the 'tmp' dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'config:dev', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'config:dev', 'concat', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

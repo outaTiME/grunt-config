@@ -171,8 +171,106 @@ grunt.registerTask('dev', ['config:dev', 'assemble']);
 grunt.registerTask('prod', ['config:prod', 'assemble']);
 ```
 
+#### Dynamic options with [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)
+
+##### Gruntfile
+
+Define variables for each environment:
+
+```js
+config: {
+  dev: {
+    options: {
+      variables: {
+        'concatOptions': {
+          banner: '(function dev () {',
+          footer: '}());'
+        }
+      }
+    }
+  },
+  prod: {
+    options: {
+      variables: {
+        'concatOptions': {
+          banner: '(function prod () {',
+          footer: '}());'
+        }
+      }
+    }
+  }
+},
+
+concat: {
+  dist: {
+    options: {
+      process: function (src, filepath) {
+        var concatOptions = grunt.config.get('concatOptions');
+        return concatOptions.banner + '\n' + src +
+          concatOptions.footer + '\n';
+      }
+    },
+    files: [
+      {expand: true, flatten: true, src: ['test/fixtures/concat.txt'], dest: 'tmp/'}
+    ]
+  }
+}
+```
+
+Or alternatively you can resolve using grunt templates:
+
+```js
+config: {
+  dev: {
+    options: {
+      variables: {
+        'concatOptions': {
+          banner: '(function dev () {',
+          footer: '}());'
+        }
+      }
+    }
+  },
+  prod: {
+    options: {
+      variables: {
+        'concatOptions': {
+          banner: '(function prod () {',
+          footer: '}());'
+        }
+      }
+    }
+  }
+},
+
+concat: {
+  dist: {
+    options: {
+      banner: '<%= grunt.config.get("concatOptions").banner %>',
+      footer: '<%= grunt.config.get("concatOptions").footer %>'
+    },
+    files: [
+      {expand: true, flatten: true, src: ['test/fixtures/concat.txt'], dest: 'tmp/'}
+    ]
+  }
+}
+```
+
+##### Tasks
+
+Define tasks for each target:
+
+```js
+// development
+grunt.registerTask('dev', ['config:dev', 'concat']);
+
+// production
+grunt.registerTask('prod', ['config:prod', 'concat']);
+```
+
 ## Release History
 
+ * 2014-06-09   v0.1.6   Third party updated, and few examples.
  * 2014-03-06   v0.1.5   Update dependencies.
  * 2013-04-07   v0.1.4   Fix log for complex object with util.inspect.
  * 2013-04-02   v0.1.3   Add peerDependencies.

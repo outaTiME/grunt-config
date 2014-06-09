@@ -1,21 +1,22 @@
 
 /*
  * grunt-config
- * http://gruntjs.com/
  *
  * Copyright (c) 2014 outaTiME
  * Licensed under the MIT license.
  * https://github.com/outaTiME/grunt-config/blob/master/LICENSE-MIT
  */
 
-module.exports = function (grunt) {
+'use strict';
 
-  'use strict';
+// plugin
+
+module.exports = function (grunt) {
 
   var util = require('util');
   var chalk = require('chalk');
 
-  grunt.registerMultiTask('config', 'Define specific target task configuration.', function () {
+  grunt.registerMultiTask('config', 'Define specific target configuration.', function () {
 
     // took options
 
@@ -30,7 +31,7 @@ module.exports = function (grunt) {
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
       grunt.log.writeln('Config ' + chalk.cyan(variable) + ' → ' +
-        chalk.cyan(util.inspect(value)));
+        chalk.green(util.inspect(value)));
       grunt.config.set(variable, value);
     });
   });
