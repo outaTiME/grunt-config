@@ -270,6 +270,7 @@ grunt.registerTask('prod', ['config:prod', 'concat']);
 
 ## Release History
 
+ * 2014-06-09   v0.1.8   Update grunt-contrib-jshint version to support node 8.x versions.
  * 2014-06-09   v0.1.7   Support for node v8.x versions.
  * 2014-06-09   v0.1.6   Third party updated, and few examples.
  * 2014-03-06   v0.1.5   Update dependencies.
