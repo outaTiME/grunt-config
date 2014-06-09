@@ -1,7 +1,7 @@
 {
   "name": "grunt-config",
   "description": "Define specific target configuration.",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "homepage": "http://github.com/outaTiME/grunt-config",
   "author": {
     "name": "outaTiME",
@@ -32,7 +32,7 @@
   "devDependencies": {
     "grunt": "~0.4.0",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.9.0",
+    "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.0",
     "grunt-contrib-concat": "~0.4.0"
   },
