@@ -21,6 +21,7 @@ module.exports = function (grunt) {
     // took options
 
     var options = this.options({
+      logOutput: true,
       variables: {}
     });
 
@@ -30,8 +31,10 @@ module.exports = function (grunt) {
 
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
-      grunt.log.writeln('Config ' + chalk.cyan(variable) + ' → ' +
-        chalk.green(util.inspect(value)));
+      if(options.logOutput){
+        grunt.log.writeln('Config ' + chalk.cyan(variable) + ' → ' +
+          chalk.green(util.inspect(value)));
+      }
       grunt.config.set(variable, value);
     });
   });
