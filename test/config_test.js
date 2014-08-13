@@ -3,7 +3,7 @@ var grunt = require('grunt');
 
 exports['config'] = {
 
-  main: function(test) {
+  main: function (test) {
 
     'use strict';
 

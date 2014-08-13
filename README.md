@@ -1,6 +1,6 @@
 # grunt-config [![Build Status](https://secure.travis-ci.org/outaTiME/grunt-config.png?branch=master)](http://travis-ci.org/outaTiME/grunt-config)
 
-> Define specific target configuration.
+> Easy way to define specific target configuration.
 
 
 
@@ -46,16 +46,7 @@ options: {
 Type: `boolean`
 Default: `true`
 
-When set to false this option suppresses the output in the console. This is useful if you are setting credentials in the config variables.
-
-```javascript
-options: {
-  logOutput: false,
-  variables: {
-    'foo': 'bar'
-  }
-}
-```
+When set to `false` this option suppresses the output in the console. This is useful if you are setting credentials in the config variables.
 
 ### Usage Examples
 
@@ -78,19 +69,15 @@ config: {
 }
 ```
 
-#### Environment variable in source (in conjunction with [grunt-replace](http://github.com/outaTiME/grunt-replace))
+#### Environment variable in source (with [grunt-replace](http://github.com/outaTiME/grunt-replace))
 
-Define the place where variable will be injected:
+File `build/environment.txt`:
 
 ```
-// build/environment.txt
-
 @@environment
 ```
 
-##### Gruntfile
-
-Define variables for each environment:
+Gruntfile:
 
 ```js
 config: {
@@ -123,13 +110,7 @@ replace: {
     ]
   }
 }
-```
 
-##### Tasks
-
-Define tasks for each target:
-
-```js
 // development
 grunt.registerTask('dev', ['config:dev', 'replace']);
 
@@ -137,11 +118,9 @@ grunt.registerTask('dev', ['config:dev', 'replace']);
 grunt.registerTask('prod', ['config:prod', 'replace']);
 ```
 
-#### Handlebars environment partials (in conjunction with [assemble](https://github.com/assemble/assemble))
+#### Handlebars environment partials (with [assemble](https://github.com/assemble/assemble))
 
-##### Gruntfile
-
-Define partials for each environment (complex object like arrays are allowed):
+Gruntfile:
 
 ```js
 config: {
@@ -172,13 +151,7 @@ assemble: {
     ]
   }
 }
-```
 
-##### Tasks
-
-Define tasks for each target:
-
-```js
 // development
 grunt.registerTask('dev', ['config:dev', 'assemble']);
 
@@ -186,11 +159,9 @@ grunt.registerTask('dev', ['config:dev', 'assemble']);
 grunt.registerTask('prod', ['config:prod', 'assemble']);
 ```
 
-#### Dynamic options with [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)
+#### Dynamic options (with [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat))
 
-##### Gruntfile
-
-Define variables for each environment:
+Gruntfile:
 
 ```js
 config: {
@@ -230,9 +201,15 @@ concat: {
     ]
   }
 }
+
+// development
+grunt.registerTask('dev', ['config:dev', 'concat']);
+
+// production
+grunt.registerTask('prod', ['config:prod', 'concat']);
 ```
 
-Or alternatively you can resolve using grunt templates:
+Gruntfile (using grunt templates):
 
 ```js
 config: {
@@ -269,13 +246,7 @@ concat: {
     ]
   }
 }
-```
 
-##### Tasks
-
-Define tasks for each target:
-
-```js
 // development
 grunt.registerTask('dev', ['config:dev', 'concat']);
 
@@ -283,8 +254,33 @@ grunt.registerTask('dev', ['config:dev', 'concat']);
 grunt.registerTask('prod', ['config:prod', 'concat']);
 ```
 
+#### Prevent stdout in production environment
+
+Gruntfile:
+
+```js
+config: {
+  dev: {
+    options: {
+      variables: {
+        'environment': 'development'
+      }
+    }
+  },
+  prod: {
+    logOutput: false,
+    options: {
+      variables: {
+        'environment': 'production'
+      }
+    }
+  }
+}
+```
+
 ## Release History
 
+ * 2014-07-13   v0.2.1   Readme updated and new logOutput flag (thanks [@kylerush](https://github.com/kylerush)).
  * 2014-06-09   v0.2.0   No way, finally remove support for 8.x of node.
  * 2014-06-09   v0.1.8   Update grunt-contrib-jshint version to support node 8.x versions.
  * 2014-06-09   v0.1.7   Support for node v8.x versions.

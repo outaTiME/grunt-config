@@ -35,7 +35,6 @@ module.exports = function (grunt) {
     config: {
       dev: {
         options: {
-          logOutput: false,
           variables: {
             'environment': 'development',
             'environment_template': '<%= "development" %>',
@@ -48,6 +47,7 @@ module.exports = function (grunt) {
       },
       prod: {
         options: {
+          logOutput: false,
           variables: {
             'environment': 'production',
             'environment_template': '<%= "production" %>',

@@ -16,7 +16,7 @@ module.exports = function (grunt) {
   var util = require('util');
   var chalk = require('chalk');
 
-  grunt.registerMultiTask('config', 'Define specific target configuration.', function () {
+  grunt.registerMultiTask('config', 'Easy way to define specific target configuration.', function () {
 
     // took options
 
@@ -31,12 +31,13 @@ module.exports = function (grunt) {
 
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
-      if(options.logOutput){
+      if (options.logOutput === true) {
         grunt.log.writeln('Config ' + chalk.cyan(variable) + ' → ' +
           chalk.green(util.inspect(value)));
       }
       grunt.config.set(variable, value);
     });
+
   });
 
 };

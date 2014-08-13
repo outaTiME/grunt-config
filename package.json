@@ -1,6 +1,6 @@
 {
   "name": "grunt-config",
-  "description": "Define specific target configuration.",
+  "description": "Easy way to define specific target configuration.",
   "version": "0.2.1",
   "homepage": "http://github.com/outaTiME/grunt-config",
   "author": {
@@ -21,23 +21,23 @@
     }
   ],
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "dependencies": {
-    "chalk": "~0.4.0"
+    "chalk": "^0.5.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.0",
-    "grunt-contrib-concat": "~0.4.0"
+    "grunt": "^0.4.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.0",
+    "grunt-contrib-concat": "^0.4.0"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": "^0.4.0"
   },
   "keywords": [
     "gruntplugin",
