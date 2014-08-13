@@ -42,6 +42,21 @@ options: {
 }
 ```
 
+#### logOutput
+Type: `boolean`
+Default: `true`
+
+When set to false this option suppresses the output in the console. This is useful if you are setting credentials in the config variables.
+
+```javascript
+options: {
+  logOutput: false,
+  variables: {
+    'foo': 'bar'
+  }
+}
+```
+
 ### Usage Examples
 
 ```js
