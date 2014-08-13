@@ -42,7 +42,7 @@ options: {
 }
 ```
 
-#### logOutput
+##### logOutput
 Type: `boolean`
 Default: `true`
 
