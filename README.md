@@ -280,6 +280,7 @@ config: {
 
 ## Release History
 
+ * 2014-08-26   v0.2.2   Fixes backwards incompatible changes introduced in NPM.
  * 2014-07-13   v0.2.1   Readme updated and new logOutput flag (thanks [@kylerush](https://github.com/kylerush)).
  * 2014-06-09   v0.2.0   No way, finally remove support for 8.x of node.
  * 2014-06-09   v0.1.8   Update grunt-contrib-jshint version to support node 8.x versions.

@@ -1,7 +1,7 @@
 {
   "name": "grunt-config",
   "description": "Easy way to define specific target configuration.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "http://github.com/outaTiME/grunt-config",
   "author": {
     "name": "outaTiME",
@@ -37,7 +37,7 @@
     "grunt-contrib-concat": "^0.4.0"
   },
   "peerDependencies": {
-    "grunt": "^0.4.0"
+    "grunt": "~0.4.0"
   },
   "keywords": [
     "gruntplugin",
