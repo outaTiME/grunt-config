@@ -280,6 +280,7 @@ config: {
 
 ## Release History
 
+ * 2015-05-01   v0.3.1   Third party dependencies updated.
  * 2015-05-01   v0.3.0   Better output management. The logOutput flag now updated to silent. Third party dependencies updated.
  * 2014-08-26   v0.2.2   Fixes backwards incompatible changes introduced in NPM.
  * 2014-07-13   v0.2.1   Readme updated and new logOutput flag (thanks [@kylerush](https://github.com/kylerush)).
