@@ -2,7 +2,7 @@
 /*
  * grunt-config
  *
- * Copyright (c) 2014 outaTiME
+ * Copyright (c) 2015 outaTiME
  * Licensed under the MIT license.
  * https://github.com/outaTiME/grunt-config/blob/master/LICENSE-MIT
  */
@@ -21,22 +21,33 @@ module.exports = function (grunt) {
     // took options
 
     var options = this.options({
-      logOutput: true,
+      silent: false,
       variables: {}
     });
 
     // locals
 
     var variables = options.variables;
+    var count = 0;
 
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
-      if (options.logOutput === true) {
-        grunt.log.writeln('Config ' + chalk.cyan(variable) + ' → ' +
-          chalk.green(util.inspect(value)));
-      }
+      grunt.verbose.writeln(chalk.cyan(variable) + ' → ' +
+        chalk.green(util.inspect(value)));
       grunt.config.set(variable, value);
+      count++;
     });
+
+    if (options.silent !== true) {
+      var str = [
+        'Configure ',
+        count,
+        count === 1 ? ' variable' : ' variables',
+        ' for current target.',
+        // this.target,
+      ];
+      grunt.log.ok(str.join(''));
+    }
 
   });
 

@@ -42,11 +42,11 @@ options: {
 }
 ```
 
-##### logOutput
-Type: `boolean`
-Default: `true`
+#### silent
+Type: `Boolean`
+Default: `false`
 
-When set to `false` this option suppresses the output in the console. This is useful if you are setting credentials in the config variables.
+If set to `true`, removes the output from stdout.
 
 ### Usage Examples
 
@@ -268,7 +268,7 @@ config: {
     }
   },
   prod: {
-    logOutput: false,
+    silent: true,
     options: {
       variables: {
         'environment': 'production'
@@ -280,6 +280,7 @@ config: {
 
 ## Release History
 
+ * 2015-05-01   v0.3.0   Better output management. The logOutput flag now updated to silent. Third party dependencies updated.
  * 2014-08-26   v0.2.2   Fixes backwards incompatible changes introduced in NPM.
  * 2014-07-13   v0.2.1   Readme updated and new logOutput flag (thanks [@kylerush](https://github.com/kylerush)).
  * 2014-06-09   v0.2.0   No way, finally remove support for 8.x of node.
