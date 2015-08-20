@@ -1,8 +1,6 @@
-# grunt-config [![Build Status](https://secure.travis-ci.org/outaTiME/grunt-config.png?branch=master)](http://travis-ci.org/outaTiME/grunt-config)
+# grunt-config [![Build Status](https://img.shields.io/travis/outaTiME/grunt-config.svg)](https://travis-ci.org/outaTiME/grunt-config) [![NPM Version](https://img.shields.io/npm/v/grunt-config.svg)](https://npmjs.org/package/grunt-config)
 
 > Easy way to define specific target configuration.
-
-
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
@@ -280,6 +278,7 @@ config: {
 
 ## Release History
 
+ * 2015-08-19   v0.4.0   Version stabilization and package.json update.
  * 2015-05-01   v0.3.1   Third party dependencies updated.
  * 2015-05-01   v0.3.0   Better output management. The logOutput flag now updated to silent. Third party dependencies updated.
  * 2014-08-26   v0.2.2   Fixes backwards incompatible changes introduced in NPM.
