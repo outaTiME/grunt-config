@@ -3,7 +3,7 @@
 > Easy way to define specific target configuration.
 
 ## Getting Started
-This plugin requires Grunt `~0.4.0`
+This plugin requires Grunt `>=0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -67,18 +67,50 @@ config: {
 }
 ```
 
-#### Environment variable in source (with [grunt-replace](http://github.com/outaTiME/grunt-replace))
+#### Default & Shared variables
+
+```js
+config: {
+  options: {
+    variables: {
+        'app': 'Demo',
+        'environment': 'default'
+    }
+  },
+  dev: {
+    options: {
+      variables: {
+        'environment': 'development'
+      }
+    }
+  },
+  prod: {
+    options: {
+      variables: {
+        'environment': 'production'
+      }
+    }
+  }
+}
+```
+
+#### Environment variables in source (with [grunt-replace](http://github.com/outaTiME/grunt-replace))
 
 File `build/environment.txt`:
 
 ```
-@@environment
+@@app - @@environment
 ```
 
 Gruntfile:
 
 ```js
 config: {
+  options: {
+    variables: {
+        'app': 'Demo'
+    }
+  },
   dev: {
     options: {
       variables: {
@@ -99,6 +131,7 @@ replace: {
   dist: {
     options: {
       variables: {
+        'app': '<%= grunt.config.get("app") %>',
         'environment': '<%= grunt.config.get("environment") %>'
       },
       force: true

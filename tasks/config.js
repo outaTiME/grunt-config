@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
-      if (options.logOutput === true) {
+      if (options.silent !== true) {
         grunt.log.writeln('[grunt-config] ' + variable.cyan + ' → ' + util.inspect(value).green);
       }
       grunt.config.set(variable, value);
@@ -46,7 +46,7 @@ module.exports = function (grunt) {
     // Log output?
     if (options.silent !== true) {
       var str = [
-        'Configure ',
+        'Configured ',
         count,
         count === 1 ? ' variable' : ' variables',
         ' for current target.'
