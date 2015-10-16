@@ -2,14 +2,12 @@
 /*
  * grunt-config
  *
- * Copyright (c) 2014 outaTiME
+ * Copyright (c) 2015 outaTiME
  * Licensed under the MIT license.
  * https://github.com/outaTiME/grunt-config/blob/master/LICENSE-MIT
  */
 
 'use strict';
-
-// plugin
 
 module.exports = function (grunt) {
 
@@ -22,19 +20,19 @@ module.exports = function (grunt) {
 
     // Default options:
     var options = {
-      logOutput: true,
+      silent: false,
       variables: {}
     };
 
     // Extend with task options:
-    ce.extend(options, grunt.config('config').options);
+    ce.extend(options, taskOptions);
 
     // Extend with target options:
     ce.extend(options, this.options());
 
-    // locals
-
+    // Configure Grunt with variables:
     var variables = options.variables;
+    var count = 0;
 
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
@@ -42,7 +40,19 @@ module.exports = function (grunt) {
         grunt.log.writeln('[grunt-config] ' + variable.cyan + ' → ' + util.inspect(value).green);
       }
       grunt.config.set(variable, value);
+      count++;
     });
+
+    // Log output?
+    if (options.silent !== true) {
+      var str = [
+        'Configure ',
+        count,
+        count === 1 ? ' variable' : ' variables',
+        ' for current target.'
+      ];
+      grunt.log.ok(str.join(''));
+    }
 
   });
 

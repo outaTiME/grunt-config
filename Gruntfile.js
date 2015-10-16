@@ -3,7 +3,7 @@
  * grunt-config
  * http://gruntjs.com/
  *
- * Copyright (c) 2014 outaTiME
+ * Copyright (c) 2015 outaTiME
  * Licensed under the MIT license.
  * https://github.com/outaTiME/grunt-config/blob/master/LICENSE-MIT
  */
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
       },
       prod: {
         options: {
-          logOutput: false,
+          silent: true,
           variables: {
             'environment': 'production',
             'environment_template': '<%= "production" %>',
