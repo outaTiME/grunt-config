@@ -9,42 +9,47 @@
 
 'use strict';
 
-// plugin
-
 module.exports = function (grunt) {
 
   var util = require('util');
-  var chalk = require('chalk');
+  var ce = require('cloneextend');
 
   grunt.registerMultiTask('config', 'Easy way to define specific target configuration.', function () {
 
-    // took options
+    var taskOptions = grunt.config('config').options || {};
 
-    var options = this.options({
+    // Default options:
+    var options = {
       silent: false,
       variables: {}
-    });
+    };
 
-    // locals
+    // Extend with task options:
+    ce.extend(options, taskOptions);
 
+    // Extend with target options:
+    ce.extend(options, this.options());
+
+    // Configure Grunt with variables:
     var variables = options.variables;
     var count = 0;
 
     Object.keys(variables).forEach(function (variable) {
       var value = variables[variable];
-      grunt.verbose.writeln(chalk.cyan(variable) + ' → ' +
-        chalk.green(util.inspect(value)));
+      if (options.silent !== true) {
+        grunt.log.writeln('[grunt-config] ' + variable.cyan + ' → ' + util.inspect(value).green);
+      }
       grunt.config.set(variable, value);
       count++;
     });
 
+    // Log output?
     if (options.silent !== true) {
       var str = [
-        'Configure ',
+        'Configured ',
         count,
         count === 1 ? ' variable' : ' variables',
-        ' for current target.',
-        // this.target,
+        ' for current target.'
       ];
       grunt.log.ok(str.join(''));
     }
