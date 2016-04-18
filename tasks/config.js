@@ -2,7 +2,7 @@
 /*
  * grunt-config
  *
- * Copyright (c) 2015 outaTiME
+ * Copyright (c) 2016 outaTiME
  * Licensed under the MIT license.
  * https://github.com/outaTiME/grunt-config/blob/master/LICENSE-MIT
  */
@@ -43,8 +43,7 @@ module.exports = function (grunt) {
         'Configure ',
         count,
         count === 1 ? ' variable' : ' variables',
-        ' for current target.',
-        // this.target,
+        ' for current target.'
       ];
       grunt.log.ok(str.join(''));
     }

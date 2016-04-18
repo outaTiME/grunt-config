@@ -1,7 +1,7 @@
 {
   "name": "grunt-config",
   "description": "Easy way to define specific target configuration.",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "author": {
     "name": "outaTiME",
     "url": "http://outa.im/"
@@ -11,6 +11,7 @@
   "engines": {
     "node": ">= 0.10.0"
   },
+  "main": "tasks/config.js",
   "scripts": {
     "release": "scripts/release.sh",
     "test": "grunt test"
@@ -19,14 +20,11 @@
     "chalk": "^1.1.0"
   },
   "devDependencies": {
-    "grunt": "^0.4.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-jshint": "^0.11.0",
-    "grunt-contrib-nodeunit": "^0.4.0",
-    "grunt-contrib-concat": "^0.5.0"
-  },
-  "peerDependencies": {
-    "grunt": ">=0.4.0"
+    "grunt": "^1.0.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.0"
   },
   "keywords": [
     "gruntplugin",
@@ -36,5 +34,25 @@
   ],
   "files": [
     "tasks"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "env": {
+      "node": true,
+      "browser": true,
+      "jquery": true
+    },
+    "rules": {
+      "quotes": [
+        2,
+        "single"
+      ],
+      "indent": [
+        2,
+        2
+      ]
+    }
+  }
 }

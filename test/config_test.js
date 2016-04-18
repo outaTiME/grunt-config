@@ -9,8 +9,6 @@ exports['config'] = {
 
     var expect;
     var result;
-    var bool_result;
-    var re;
 
     test.expect(3);
 
