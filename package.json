@@ -17,7 +17,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "chalk": "^1.1.0"
+    "chalk": "^2.0.0"
   },
   "devDependencies": {
     "grunt": "^1.0.0",
