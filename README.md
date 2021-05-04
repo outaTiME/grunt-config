@@ -1,28 +1,57 @@
-# grunt-config [![Build Status](https://img.shields.io/travis/outaTiME/grunt-config.svg)](https://travis-ci.org/outaTiME/grunt-config) [![NPM Version](https://img.shields.io/npm/v/grunt-config.svg)](https://npmjs.org/package/grunt-config)
+# grunt-config
 
-> Easy way to define specific target configuration.
+[![Build Status](https://img.shields.io/github/workflow/status/outaTiME/grunt-config/CI)](https://github.com/outaTiME/grunt-config/actions/workflows/main.yml)
+[![Version](https://img.shields.io/npm/v/grunt-config.svg)](https://www.npmjs.com/package/grunt-config)
+![Prerequisite](https://img.shields.io/badge/node-%3E%3D10-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Twitter: outa7iME](https://img.shields.io/twitter/follow/outa7iME.svg?style=social)](https://twitter.com/outa7iME)
 
-## Getting Started
+> Easy way to define target specific settings.
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+## Install
+
+From NPM:
 
 ```shell
 npm install grunt-config --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+## Usage
 
-```js
-grunt.loadNpmTasks('grunt-config);
+Assuming installation via NPM, you can use `grunt-config` in your gruntfile like this:
+
+```javascript
+module.exports = function (grunt) {
+  grunt.initConfig({
+    config: {
+      dev: {
+        options: {
+          variables: {
+            'environment': 'development'
+          }
+        }
+      },
+      prod: {
+        options: {
+          variables: {
+            'environment': 'production'
+          }
+        }
+      }
+    }
+  });
+  grunt.registerTask('trace', function () {
+    grunt.log.writeln('Using environment: ' + grunt.config.get('environment'));
+  });
+  grunt.loadNpmTasks('grunt-config');
+  grunt.registerTask('default', ['config:dev', 'trace']);
+};
 ```
 
-## Config task
-_Run this task with the `grunt config` command._
+## Options
 
-Task targets and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
-### Options
-
-##### variables
+### variables
 Type: `Object`
 
 This option is used to define the variables to be exported in [grunt.config](http://gruntjs.com/api/grunt.config) object.
@@ -35,34 +64,15 @@ options: {
 }
 ```
 
-#### silent
+### silent
 Type: `Boolean`
 Default: `false`
 
 If set to `true`, removes the output from stdout.
 
-### Usage Examples
+## Examples
 
-```js
-config: {
-  dev: {
-    options: {
-      variables: {
-        'environment': 'development'
-      }
-    }
-  },
-  prod: {
-    options: {
-      variables: {
-        'environment': 'production'
-      }
-    }
-  }
-}
-```
-
-#### Environment variable in source (with [grunt-replace](http://github.com/outaTiME/grunt-replace))
+### Environment variable in source (with [grunt-replace](http://github.com/outaTiME/grunt-replace))
 
 File `build/environment.txt`:
 
@@ -70,9 +80,9 @@ File `build/environment.txt`:
 @@environment
 ```
 
-Gruntfile:
+gruntfile:
 
-```js
+```javascript
 config: {
   dev: {
     options: {
@@ -99,7 +109,9 @@ replace: {
       force: true
     },
     files: [
-      {expand: true, flatten: true, src: ['build/environment.txt'], dest: 'public/'}
+      {
+        expand: true, flatten: true, src: ['build/environment.txt'], dest: 'public/'
+      }
     ]
   }
 }
@@ -111,11 +123,11 @@ grunt.registerTask('dev', ['config:dev', 'replace']);
 grunt.registerTask('prod', ['config:prod', 'replace']);
 ```
 
-#### Handlebars environment partials (with [assemble](https://github.com/assemble/assemble))
+### Handlebars environment partials (with [assemble](https://github.com/assemble/assemble))
 
-Gruntfile:
+gruntfile:
 
-```js
+```javascript
 config: {
   dev: {
     options: {
@@ -140,7 +152,9 @@ assemble: {
       ext: '.html'
     },
     files: [
-      {expand: true, cwd: 'assets/templates', src: ['**/*.hbs'], dest: 'tmp/templates'}
+      {
+        expand: true, cwd: 'assets/templates', src: ['**/*.hbs'], dest: 'temp/templates'
+      }
     ]
   }
 }
@@ -152,11 +166,11 @@ grunt.registerTask('dev', ['config:dev', 'assemble']);
 grunt.registerTask('prod', ['config:prod', 'assemble']);
 ```
 
-#### Dynamic options (with [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat))
+### Dynamic options (with [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat))
 
-Gruntfile:
+gruntfile:
 
-```js
+```javascript
 config: {
   dev: {
     options: {
@@ -185,12 +199,13 @@ concat: {
     options: {
       process: function (src, filepath) {
         var concatOptions = grunt.config.get('concatOptions');
-        return concatOptions.banner + '\n' + src +
-          concatOptions.footer + '\n';
+        return concatOptions.banner + '\n' + src + concatOptions.footer + '\n';
       }
     },
     files: [
-      {expand: true, flatten: true, src: ['test/fixtures/concat.txt'], dest: 'tmp/'}
+      {
+        expand: true, flatten: true, src: ['test/fixtures/concat.txt'], dest: 'temp/'
+      }
     ]
   }
 }
@@ -202,9 +217,9 @@ grunt.registerTask('dev', ['config:dev', 'concat']);
 grunt.registerTask('prod', ['config:prod', 'concat']);
 ```
 
-Gruntfile (using grunt templates):
+### Dynamic options using grunt templates (with [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat))
 
-```js
+```javascript
 config: {
   dev: {
     options: {
@@ -235,7 +250,9 @@ concat: {
       footer: '<%= grunt.config.get("concatOptions").footer %>'
     },
     files: [
-      {expand: true, flatten: true, src: ['test/fixtures/concat.txt'], dest: 'tmp/'}
+      {
+        expand: true, flatten: true, src: ['test/fixtures/concat.txt'], dest: 'temp/'
+      }
     ]
   }
 }
@@ -247,11 +264,11 @@ grunt.registerTask('dev', ['config:dev', 'concat']);
 grunt.registerTask('prod', ['config:prod', 'concat']);
 ```
 
-#### Prevent stdout in production environment
+### Prevent stdout on production environment
 
-Gruntfile:
+gruntfile:
 
-```js
+```javascript
 config: {
   dev: {
     options: {
@@ -271,26 +288,6 @@ config: {
 }
 ```
 
-## Release History
+## License
 
- * 2016-04-19   v1.0.0   Bump devDependencies. Point main to task and remove peerDeps.
- * 2015-08-19   v0.4.0   Version stabilization and package.json update.
- * 2015-08-19   v0.4.0   Version stabilization and package.json update.
- * 2015-05-01   v0.3.1   Third party dependencies updated.
- * 2015-05-01   v0.3.0   Better output management. The logOutput flag now updated to silent. Third party dependencies updated.
- * 2014-08-26   v0.2.2   Fixes backwards incompatible changes introduced in NPM.
- * 2014-07-13   v0.2.1   Readme updated and new logOutput flag (thanks [@kylerush](https://github.com/kylerush)).
- * 2014-06-09   v0.2.0   No way, finally remove support for 8.x of node.
- * 2014-06-09   v0.1.8   Update grunt-contrib-jshint version to support node 8.x versions.
- * 2014-06-09   v0.1.7   Support for node v8.x versions.
- * 2014-06-09   v0.1.6   Third party updated, and few examples.
- * 2014-03-06   v0.1.5   Update dependencies.
- * 2013-04-07   v0.1.4   Fix log for complex object with util.inspect.
- * 2013-04-02   v0.1.3   Add peerDependencies.
- * 2013-04-02   v0.1.2   Update description and README.md.
- * 2013-04-02   v0.1.1   Update variable definition object.
- * 2013-04-02   v0.1.0   Initial version.
-
----
-
-Task submitted by [Ariel Falduto](http://outa.im/)
+MIT © [outaTiME](https://outa.im)
